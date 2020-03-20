@@ -49,7 +49,7 @@ def close_everything():
 
 def main():
     all_customers = get_all_customers()
-    list_similar_cust_id = get_similar_items(all_customers[:50000])
+    list_similar_cust_id = get_similar_items(all_customers[:50000])  # Only doing a part of the customers to reduce loading
     insert_similar_customers(list_similar_cust_id)
     close_everything()
 
