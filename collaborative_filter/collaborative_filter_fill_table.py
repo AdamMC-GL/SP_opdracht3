@@ -12,7 +12,7 @@ def get_cursor():
 
 def get_all_customers():
     cur = get_cursor()
-    cur.execute("""SELECT id, segment FROM profiles WHERE segment IS NOT NULL;""")
+    cur.execute("SELECT id, segment FROM profiles WHERE segment IS NOT NULL;")
     myresult = cur.fetchall()
     random.shuffle(myresult)  # so every products has a chance to be recommended
 
@@ -20,7 +20,6 @@ def get_all_customers():
 
 
 def get_similar_items(all_customers):
-    print('getting similar customers')
     list_similar_cust_id = []
     for All_cust in all_customers:
         similar_cust_id = [All_cust[0]]  # Always starts with id for primary key
@@ -35,11 +34,10 @@ def get_similar_items(all_customers):
 
 def insert_similar_customers(list_similar_cust_id):
     cur = get_cursor()
-    cur.execute("""DELETE FROM similar_customers""")
-    print('loading')
+    cur.execute("DELETE FROM similar_customers")
     for similar_customers in list_similar_cust_id:
         values = tuple(similar_customers)
-        sql = """INSERT INTO similar_customers VALUES (%s, %s)"""
+        sql = "INSERT INTO similar_customers VALUES (%s, %s)"
         cur.execute(sql, values)
 
 
