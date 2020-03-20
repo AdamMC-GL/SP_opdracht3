@@ -54,14 +54,6 @@ def main():
     list_similar_cust_id = get_similar_items(all_customers[:50000])
     insert_similar_customers(list_similar_cust_id)
     close_everything()
-    c = psycopg2.connect("dbname=Huwebshop user=postgres password=1qaz2wsx3edc")
-    cur = c.cursor()
-
-    # cur.execute("DELETE FROM similar_products;")
-    cur.execute("SELECT * FROM similar_customers ")
-    myresult = cur.fetchall()
-
-    print(myresult)
 
 
 if __name__ == "__main__":
